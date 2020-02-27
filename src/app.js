@@ -15,7 +15,7 @@ app.set('view engine','hbs');
 app.use('/',router);
 
 
-app.listen(8080,() => {
+app.listen(80,() => {
 
 console.log('server listening 8080');
 
