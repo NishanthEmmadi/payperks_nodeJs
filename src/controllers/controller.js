@@ -8,38 +8,53 @@ exports.renderAboutPage = (req,res) => {
 
 exports.getWeather = (req,res) => {
 
+    const request = req.body;
+
    let payDetails = {
-        payrollAmount: parseInt(req.body.payrollAmount),
-        socialSecurityTax: req.body.socialSecurityTax,
-        medicalTax: req.body.medicalTax,
-        federalTax: req.body.federalTax,
-        StateTax: req.body.StateTax,
-        HealthInsurance: req.body.HealthInsurance,
-        otherDeductions: req.body.otherDeductions,
-        hoursWorked: parseInt(req.body.hoursWorked),
-        hourlyRate: parseInt(req.body.hourlyRate),
+        payrollAmount: parseFloat(request.payrollAmount),
+        socialSecurityTax: request.socialSecurityTax === '' ? 0.0 : request.socialSecurityTax,
+        medicalTax: request.medicalTax === '' ? 0.0 : request.medicalTax,
+        federalTax: request.federalTax === '' ? 0.0 : request.federalTax,
+        StateTax: request.StateTax === '' ? 0.0 : request.StateTax,
+        HealthInsurance: request.HealthInsurance === '' ? 0.0 : request.HealthInsurance,
+        otherDeductions: request.otherDeductions === '' ? 0.0 : request.otherDeductions,
+        hoursWorked: parseFloat(request.hoursWorked),
+        hourlyRate: parseFloat(request.hourlyRate),
     }
 
     let total= payDetails.hoursWorked * payDetails.hourlyRate;
-    let bufferAmount = payDetails.payrollAmount-total;
+    let bufferAmount = total-payDetails.payrollAmount;
+    
+    console.log(parseFloat(payDetails.federalTax) + 'fed');
+    
+    let deductions = (parseFloat(payDetails.socialSecurityTax) +
+    parseFloat(payDetails.medicalTax) +
+    parseFloat(payDetails.StateTax) +
+    parseFloat(payDetails.federalTax) +
+    parseFloat(payDetails.HealthInsurance) +
+    parseFloat(payDetails.otherDeductions ));
+    let deposit = payDetails.payrollAmount - deductions;
 
-    console.log(payDetails);
+    console.log(deposit+'--->');
 
-    res.render('landing',{
+    let response = {
 
-        payrollAmount: req.body.payrollAmount,
-        socialSecurityTax: req.body.socialSecurityTax,
-        medicalTax: req.body.medicalTax,
-        federalTax: req.body.federalTax,
-        StateTax: req.body.StateTax,
-        HealthInsurance: req.body.HealthInsurance,
-        otherDeductions: req.body.otherDeductions,
-        hoursWorked: parseInt(req.body.hoursWorked),
-        hourlyRate: parseInt(req.body.hourlyRate),
+        payrollAmount: payDetails.payrollAmount,
+        socialSecurityTax: payDetails.socialSecurityTax,
+        medicalTax: payDetails.medicalTax,
+        federalTax: payDetails.federalTax,
+        StateTax: payDetails.StateTax,
+        HealthInsurance: payDetails.HealthInsurance,
+        otherDeductions: payDetails.otherDeductions,
+        hoursWorked: payDetails.hoursWorked,
+        hourlyRate: payDetails.hourlyRate,
         total: total,
         bufferAmount : bufferAmount,
-        cumulativeBuffer: bufferAmount
+        cumulativeBuffer: bufferAmount,
+        deposit: deposit
 
-    });
+    }
+
+    res.render('landing',response);
 
 }
