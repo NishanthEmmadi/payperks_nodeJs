@@ -33,6 +33,7 @@ exports.getWeather = (req,res) => {
     parseFloat(payDetails.federalTax) +
     parseFloat(payDetails.HealthInsurance) +
     parseFloat(payDetails.otherDeductions ));
+
     let deposit = payDetails.payrollAmount - deductions;
 
     console.log(deposit+'--->');
@@ -49,9 +50,10 @@ exports.getWeather = (req,res) => {
         hoursWorked: payDetails.hoursWorked,
         hourlyRate: payDetails.hourlyRate,
         total: total,
-        bufferAmount : bufferAmount,
-        cumulativeBuffer: bufferAmount,
-        deposit: deposit
+        bufferAmount : bufferAmount.toFixed(2),
+        cumulativeBuffer: bufferAmount.toFixed(2),
+        deposit: deposit,
+        deductions : deductions.toFixed(2)
 
     }
 
