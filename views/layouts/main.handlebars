@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <title>payday.app</title>
+      <script src="path/to/chartjs/dist/Chart.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+      <link rel="stylesheet" href="css/{{style}}">
+    
+   </head>
+   <body>
+
+{{{body}}}
+
+   </body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script>
+
+ function myFunction() {
+
+  $.ajax({
+  type: "get",
+  url: '/generateToken',
+  data: {
+    username: '',
+    password: ''
+  },
+  success: function(response) {
+    if (response.result == 'redirect') {
+      //redirecting to main page from here
+
+      window.location.replace(response.url);
+    }
+
+  }
+});
+ }
+   
+    </script>
+
+</html>
+       

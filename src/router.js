@@ -2,13 +2,28 @@ const express = require('express');
 
 const router = express.Router();
 
+
 const controller = require('./controllers/controller');
 
-router.get('/', controller.renderHomePage);
+// Successful login -> homepage
+router.get('/homePage', controller.renderHomePage);
 
-router.post('/', controller.getWeather);
+// registration page
+ router.get('/register', controller.renderRegistrationPage);
 
-router.get('/about', controller.renderAboutPage);
+ router.post('/register-user', controller.registerUser);
+
+
+// generate JWT token
+router.get('/generateToken', controller.generateJwtToken)
+
+//welcome login page
+router.get('/', controller.renderLoginPage);
+
+// pay calculation submit
+router.post('/calculate', controller.getWeather);
+
+
 
 
 module.exports = router;
