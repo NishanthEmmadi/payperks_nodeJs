@@ -20,12 +20,25 @@ dotenv.config();
 //router file import
 const router = require('./router')
 
+
+var hbs = exphbs.create({
+    defaultLayout: "main",
+    extname: ".hbs",
+    helpers: {
+      section: function(name, options) { 
+        if (!this._sections) this._sections = {};
+          this._sections[name] = options.fn(this); 
+          return null;
+        }
+    }    
+  });
+
 //middleware functions
 app.use(express.urlencoded({extended: false}));
 app.use(express.json() );
 app.use(express.static('public'));
-app.engine('handlebars', exphbs());
-app.set('view engine', 'handlebars');
+app.engine('hbs', hbs.engine);
+app.set('view engine', '.hbs');
 
 //router
 app.use('/',router);

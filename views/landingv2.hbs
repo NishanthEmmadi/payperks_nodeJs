@@ -1,0 +1,204 @@
+
+    <section>
+        <nav class="navbar navbar-dark navbar-expand-md" id="app-navbar">
+            <div class="container-fluid"><a class="navbar-brand" href="#"><i class="icon ion-ios-navigate" id="brand-logo" style="width: 60px;height: 60px;"></i></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div
+                    class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Verify payroll</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Calculate payroll</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Payroll history</a></li>
+                    </ul>
+            </div>
+            </div>
+        </nav>
+    </section>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-5">
+                <section>
+                    <h3 class="text-nowrap text-center text-body border-primary shadow-sm" style="padding: 20px;color: rgb(0,3,6);">Payroll details</h3>
+                </section>
+                <section>
+                    <div class="row">
+                        <div class="col offset-lg-0">
+                            <form>
+                            <div class="form-check text-center text-body"><input class="form-check-input" type="radio" id="formCheck-1" name = "status" value = "C" checked><label class="form-check-label text-center" for="formCheck-1">Student</label></div>
+                            <div class="form-check text-center text-body"><input class="form-check-input" type="radio" id="formCheck-2" name = "status" value = "Java"><label class="form-check-label text-center" for="formCheck-2">H1B</label></div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+                <section class = "Java selectt" style="padding: 12px;">
+                    <div class="form-group text-center">
+                        <div class="table-responsive d-flex justify-content-center align-items-end">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Detail</th>
+                                        <th class="text-nowrap text-left" style="width: 150px;">Amount-USD</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        {{!-- id="inputTooltip" data-toggle="tooltip" --}}
+                                        <td  class="text-left text-body"><i class="icon ion-information-circled" id="brand-logo-2" style="width: 80px;padding: 10px 10px 10px 10px;height: 80px;color: #f4476b;"></i>Month</td>
+                                        <td>
+                                            <div class="dropdown"><button  class="btn btn-primary dropdown-toggle text-center border rounded" data-toggle="dropdown" aria-expanded="false" type="button" style="width: 110px;padding: 0px;background-color: rgb(232,75,94);">Dropdown </button>
+                                                <div
+                                                    class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                        </div>
+                        </td>
+                        </tr>
+                        <tr>
+                            <td class="text-nowrap text-justify"><i class="icon ion-information-circled" id="brand-logo-17" style="width: 80px;padding: 10px 10px 10px 10px;height: 80px;color: #f4476b;" data-toggle="tooltip" title="Total wages ran for the month excluding the taxes and deductions"></i>Payroll Amount</td>
+                            <td class="text-left"><input class="border rounded" type="text" name="payrollAmount" inputmode="numeric" required="" style="width: 110px;"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-nowrap text-left"><i class="icon ion-information-circled" id="brand-logo-3" style="width: 80px;padding: 10px 10px 10px 10px;height: 80px;color: #f4476b;"></i>Social security tax</td>
+                            <td class="text-left"><input class="border rounded" type="text" name="payrollAmount" inputmode="numeric" required="" style="width: 110px;"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-nowrap text-left"><i class="icon ion-information-circled" id="brand-logo-4" style="width: 80px;padding: 10px 10px 10px 10px;height: 80px;color: #f4476b;"></i>Medical tax</td>
+                            <td class="text-left"><input class="border rounded" type="text" name="payrollAmount" inputmode="numeric" required="" style="width: 110px;"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-nowrap text-left"><i class="icon ion-information-circled" id="brand-logo-5" style="width: 80px;padding: 10px 10px 10px 10px;height: 80px;color: #f4476b;"></i>Federal tax</td>
+                            <td class="text-left"><input class="border rounded" type="text" name="payrollAmount" inputmode="numeric" required="" style="width: 110px;"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-nowrap text-left"><i class="icon ion-information-circled" id="brand-logo-6" style="width: 80px;padding: 10px 10px 10px 10px;height: 80px;color: #f4476b;"></i>State tax</td>
+                            <td class="text-left"><input class="border rounded" type="text" name="payrollAmount" inputmode="numeric" required="" style="width: 110px;"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-nowrap text-left"><i class="icon ion-information-circled" id="brand-logo-7" style="width: 80px;padding: 10px 10px 10px 10px;height: 80px;color: #f4476b;"></i>Health insurance</td>
+                            <td class="text-left"><input class="border rounded" type="text" name="payrollAmount" inputmode="numeric" required="" style="width: 110px;"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-nowrap text-left"><i class="icon ion-information-circled" id="brand-logo-8" style="width: 80px;padding: 10px 10px 10px 10px;height: 80px;color: #f4476b;"></i>Other deductions</td>
+                            <td class="text-left"><input class="border rounded" type="text" name="payrollAmount" inputmode="numeric" required="" style="width: 110px;"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-nowrap text-left"><i class="icon ion-information-circled" id="brand-logo-9" style="width: 80px;padding: 10px 10px 10px 10px;height: 80px;color: #f4476b;"></i>Hours worked</td>
+                            <td class="text-left"><input class="border rounded" type="text" name="payrollAmount" inputmode="numeric" required="" style="width: 110px;"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-nowrap text-left"><i class="icon ion-information-circled" id="brand-logo-10" style="width: 80px;padding: 10px 10px 10px 10px;height: 80px;color: #f4476b;"></i>Hourly rate</td>
+                            <td class="text-left"><input class="border rounded" type="text" name="payrollAmount" inputmode="numeric" required="" style="width: 110px;"></td>
+                        </tr>
+                        </tbody>
+                        </table>
+                    </div><button class="btn btn-primary text-center border rounded float-none align-items-center" type="submit" style="width: 160px;padding: 10px;background-color: rgb(232,75,94);">Verify</button></div>
+            </section>
+            <div style = "display : block" class = "C selectt">
+            <section style="padding: 12px;">
+                <div class="form-group text-center">
+                    <div class="table-responsive d-lg-flex align-items-lg-end">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Detail</th>
+                                    <th class="text-nowrap text-left" style="width: 150px;"><strong>Amount-USD</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-left text-body"><i class="icon ion-information-circled" id="brand-logo-2" style="width: 80px;padding: 10px 10px 10px 10px;height: 80px;color: #f4476b;"></i>Month</td>
+                                    <td>
+                                        <div class="dropdown"><button class="btn btn-primary dropdown-toggle text-center border rounded" data-toggle="dropdown" aria-expanded="false" type="button" style="width: 110px;background-color: rgb(232,75,94);height: 26px;padding: 0px;">Dropdown </button>
+                                            <div
+                                                class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                    </div>
+                    </td>
+                    </tr>
+                    <tr>
+                        <td class="text-nowrap text-left"><i class="icon ion-information-circled" id="brand-logo-11" style="width: 80px;padding: 10px 10px 10px 10px;height: 80px;color: #f4476b;"></i>Payroll Amount</td>
+                        <td class="text-left"><input class="border rounded" type="text" name="payrollAmount" inputmode="numeric" required="" style="width: 110px;"></td>
+                    </tr>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr>
+                        <td class="text-nowrap text-left"><i class="icon ion-information-circled" id="brand-logo-12" style="width: 80px;padding: 10px 10px 10px 10px;height: 80px;color: #f4476b;"></i>Federal tax</td>
+                        <td class="text-left"><input class="border rounded" type="text" name="payrollAmount" inputmode="numeric" required="" style="width: 110px;"></td>
+                    </tr>
+                    <tr>
+                        <td class="text-nowrap text-left"><i class="icon ion-information-circled" id="brand-logo-13" style="width: 80px;padding: 10px 10px 10px 10px;height: 80px;color: #f4476b;"></i>State tax</td>
+                        <td class="text-left"><input class="border rounded" type="text" name="payrollAmount" inputmode="numeric" required="" style="width: 110px;"></td>
+                    </tr>
+                    <tr>
+                        <td class="text-nowrap text-left"><i class="icon ion-information-circled" id="brand-logo-14" style="width: 80px;padding: 10px 10px 10px 10px;height: 80px;color: #f4476b;"></i>Health insurance</td>
+                        <td class="text-left"><input class="border rounded" type="text" name="payrollAmount" inputmode="numeric" required="" style="width: 110px;"></td>
+                    </tr>
+                    <tr>
+                        <td class="text-nowrap text-left"><i class="icon ion-information-circled" id="brand-logo-15" style="width: 80px;padding: 10px 10px 10px 10px;height: 80px;color: #f4476b;"></i>Other deductions</td>
+                        <td class="text-left"><input class="border rounded" type="text" name="payrollAmount" inputmode="numeric" required="" style="width: 110px;"></td>
+                    </tr>
+                    <tr>
+                        <td class="text-nowrap text-left"><i class="icon ion-information-circled" id="brand-logo-16" style="width: 80px;padding: 10px 10px 10px 10px;height: 80px;color: #f4476b;"></i>Hours worked</td>
+                        <td class="text-left"><input class="border rounded" type="text" name="payrollAmount" inputmode="numeric" required="" style="width: 110px;"></td>
+                    </tr>
+                    <tr>
+                        <td class="text-nowrap text-left"><i class="icon ion-information-circled" id="brand-logo-1" style="width: 80px;padding: 10px 10px 10px 10px;height: 80px;color: #f4476b;"></i>Hourly rate</td>
+                        <td class="text-left"><input class="border rounded" type="text" name="payrollAmount" inputmode="numeric" required="" style="width: 110px;"></td>
+                    </tr>
+                    </tbody>
+                    </table>
+                </div><button class="btn btn-primary text-center border rounded float-none align-items-center" type="submit" style="width: 160px;padding: 10px;background-color: rgb(232,75,94);">Verify</button></div>
+        </section>
+        </div>
+    </div>
+    <div class="col text-center">
+        <section>
+            <h4 class="text-nowrap text-center text-body border-primary shadow-sm" style="padding: 20px;">Payroll summary</h4>
+        </section>
+        <section><canvas id="pie-chart" width="80px" height="40px"></canvas></section>
+        <section style="padding: 0px 90px;">
+
+            <div class="row">
+
+<div class="col-lg-12 text-center main" style="padding-top: 60px; background-color:lavenderblush;">
+         
+         <table style="width:100%" align="center">
+            <h3 align="left">summary</h3>
+            <tr>
+                <td align="left">Month : {{month}} </td>
+                <td align="left">Hours worked: {{hoursWorked}}</td>
+            </tr>
+            <tr>
+               <td align="left"> Federal tax : {{federalTax}}</td>
+                 <td align="left">Hourly rate: {{hourlyRate}}</td>
+            </tr>
+            <tr>
+               <td align="left"> Medical tax : {{medicalTax}}</td>
+               <td align="left"> Total:{{total}}</td>
+               <td></td>
+            </tr>
+            <tr>
+               <td align="left">State tax : {{StateTax}}</td>
+               <td align="left">Payroll Amount: {{payrollAmount}}</td>
+            </tr>
+            <tr>
+               <td align="left">Health insurance : {{HealthInsurance}} </td>
+               <td align="left"><span style="color:red">Total Deductions: {{deductions}}</span> </td>
+            </tr>
+            <tr>
+               <td align="left">Other deductions : {{otherDeductions}}</td>
+                <td align="left"><span style="color:green">Direct Deposit: {{deposit}}</span></td>
+            </tr>
+            <tr>
+               <td align="left">Social security tax : {{socialSecurityTax}}</td>
+               <td align="left"><span style="color:green">Buffer Amount: {{bufferAmount}}</span></td>
+            </tr>
+            
+         </table>
+      </div>
+
+      
+                </div>
+            
+        </section>
+    </div>
+    </div>
+    </div>
+    
+

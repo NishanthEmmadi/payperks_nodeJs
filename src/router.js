@@ -1,4 +1,5 @@
 const express = require('express');
+const  auth = require('./auth');
 
 const router = express.Router();
 
@@ -6,11 +7,11 @@ const router = express.Router();
 const controller = require('./controllers/controller');
 
 // Successful login -> homepage
-router.get('/homePage', controller.renderHomePage);
+router.get('/homePage',auth, controller.renderHomePagev2);
+
 
 // registration page
  router.get('/register', controller.renderRegistrationPage);
-
  router.post('/register-user', controller.registerUser);
 
 

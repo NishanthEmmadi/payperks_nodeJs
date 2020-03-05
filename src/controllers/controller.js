@@ -1,20 +1,60 @@
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 const User = require("../../model/User");
 
-exports.generateJwtToken = (req, res) => {
-  console.log("received");
+ exports.generateJwtToken = async (req, res) => {
+
+  const uname = req.query.username;
+  const password = req.query.password;
+
+  const user =  await User.findOne({ username:uname });
+
+  if(!user)
+  return res.status(400).send({
+    result: "redirect",
+    url: "/login",
+    style: "login.css",
+    loginError: "login error !!!!!"
+  });
+
+   const validPass =await bcrypt.compare(password, user.password);
+       
+   if(!validPass)
+   return res.status(400).send({
+     result: "redirect",
+     url: "/login",
+     style: "login.css",
+     loginError: "login error !!!!!"
+   });
+
+  //generating jwt token 
+  let token = jwt.sign({
+    exp: Math.floor(Date.now() / 1000) + (60 * 60),
+    data: uname }, 'secret');
+
+  console.log('Generated '+ token);
 
   return res.status(200).send({
     result: "redirect",
-    token: "DFHSFDKSJFKSHFD434",
+    token: token,
     url: "/homePage"
   });
-};
+
+}
 
 exports.renderHomePage = (req, res) => {
   console.log("home page called");
 
   res.render("landing", {
     style: "style.css"
+  });
+};
+
+exports.renderHomePagev2 = (req, res) => {
+  console.log(req);
+
+  res.render("landingv2", {
+    style: "landingStyles.css"
   });
 };
 
@@ -26,45 +66,43 @@ exports.renderRegistrationPage = (req, res) => {
 
 exports.registerUser = async (req, res) => {
 
-  let userResult = await User.findOne({ username: req.body.username }, function(
-    err,
-    obj
-  ) {});
+  let isEmailExist = await User.findOne({ username: req.body.username });
 
-  if (userResult == null) {
+  if (isEmailExist) 
+  res.status(200).render("registration", {
+    style: "registration.css",
+    registrationError: 'User already exists! Please try again'
+  });
 
-    const user = new User({
-      username: req.body.username,
-      password: req.body.password
-    });
-    try {
-      await user.save();
-    } catch (err) {
+  const UserProvidedpassword =req.body.password;
+  const salt = await bcrypt.genSalt(10);
+  const hashPassword = await bcrypt.hash(UserProvidedpassword, salt);
 
-        console.log('error while saving:' + err)
+  console.log('Generated Hash'+ hashPassword)
 
-      res.status(200).render("registration", {
-        style: "registration.css",
-        registrationError: 'Error!! please try again'
+      const user = new User({
+        username: req.body.username,
+        password: hashPassword
       });
+  
+      try {
+         await user.save();
 
-      return;
+         res.status(200).render("login", {
+          style: "login.css",
+          loginError: "Registration Successful !!"
+        });
 
-    }
-
-    res.status(200).render("login", {
-        style: "login.css",
-        loginError: "Registration Successful !!"
-      });
-
-  }else {
-
-    res.status(200).render("registration", {
-        style: "registration.css",
-        registrationError: 'User already exists! Please try again'
-      });
-
-  }
+      } catch (err) {
+  
+          console.log('error while saving:' + err)
+  
+        res.status(200).render("registration", {
+          style: "registration.css",
+          registrationError: 'Error!! please try again'
+        });
+  
+      }
 };
 
 exports.renderLoginPage = (req, res) => {
