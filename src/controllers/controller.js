@@ -68,7 +68,7 @@ exports.registerUser = async (req, res) => {
   let isEmailExist = await User.findOne({ username: req.body.username });
 
   if (isEmailExist) 
-  res.status(200).render("registration", {
+  return res.status(200).render("registration", {
     style: "registration.css",
     registrationError: 'User already exists! Please try again'
   });
@@ -87,7 +87,7 @@ exports.registerUser = async (req, res) => {
       try {
          await user.save();
 
-         res.status(200).render("login", {
+       return res.status(200).render("login", {
           style: "login.css",
           loginError: "Registration Successful !!"
         });
@@ -96,7 +96,7 @@ exports.registerUser = async (req, res) => {
   
           console.log('error while saving:' + err)
   
-        res.status(200).render("registration", {
+        return res.status(200).render("registration", {
           style: "registration.css",
           registrationError: 'Error!! please try again'
         });
