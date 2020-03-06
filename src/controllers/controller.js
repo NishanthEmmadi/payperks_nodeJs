@@ -51,7 +51,6 @@ exports.renderHomePage = (req, res) => {
 };
 
 exports.renderHomePagev2 = (req, res) => {
-  console.log(req);
 
   res.render("landingv2", {
     style: "landingStyles.css"

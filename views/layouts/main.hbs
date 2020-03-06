@@ -56,19 +56,17 @@
 },
  error: function(err){
 
-  {{!-- var template  = Handlebars.compile(JSON.stringify(err));
-
-  document.write(template({ doesWhat: "Please enter valid credentials!" })); --}}
-
-   //console.log(console.log(template({ doesWhat: "Please enter valid credentials!" })));
    window.alert('Please enter valid credentials');
+
  }
 
 });
  }
 
   $(document).ready(function(){
-        $('[data-toggle="tooltip"]').tooltip();   });
+        $('[data-toggle="tooltip"]').tooltip();  
+    });
+           
    
 new Chart(document.getElementById("pie-chart"), {
     type: 'pie',
@@ -81,6 +79,10 @@ new Chart(document.getElementById("pie-chart"), {
       }]
     },
     options: {
+      legend: {
+        display: true,
+        position: 'bottom'
+      },
       title: {
         display: true,
         text: 'Deductions'
