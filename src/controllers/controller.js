@@ -111,22 +111,29 @@ exports.renderLoginPage = (req, res) => {
 };
 
 exports.getWeather = (req, res) => {
+
   const request = req.body;
 
   let payDetails = {
     payrollAmount: parseFloat(request.payrollAmount),
     socialSecurityTax:
-      request.socialSecurityTax === "" ? 0.0 : request.socialSecurityTax,
-    medicalTax: request.medicalTax === "" ? 0.0 : request.medicalTax,
+      request.socialSecurityTax == undefined || 
+      request.socialSecurityTax.length ===0 ? 0.0 : request.socialSecurityTax,
+
+    medicalTax: request.medicalTax == undefined || 
+      request.socialSecurityTax.length === 0 ? 0.0 : request.medicalTax,
+
     federalTax: request.federalTax === "" ? 0.0 : request.federalTax,
-    StateTax: request.StateTax === "" ? 0.0 : request.StateTax,
+    StateTax: request.stateTax === "" ? 0.0 : request.stateTax,
     HealthInsurance:
-      request.HealthInsurance === "" ? 0.0 : request.HealthInsurance,
+      request.healthInsurance === "" ? 0.0 : request.healthInsurance,
     otherDeductions:
       request.otherDeductions === "" ? 0.0 : request.otherDeductions,
     hoursWorked: parseFloat(request.hoursWorked),
     hourlyRate: parseFloat(request.hourlyRate)
   };
+
+  console.log(payDetails);
 
   let total = payDetails.hoursWorked * payDetails.hourlyRate;
   let bufferAmount = total - payDetails.payrollAmount;
@@ -158,5 +165,5 @@ exports.getWeather = (req, res) => {
     deductions: deductions.toFixed(2)
   };
 
-  res.render("landing", response);
+  res.render("landingv2", response);
 };

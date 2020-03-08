@@ -76,7 +76,7 @@ new Chart(document.getElementById("pie-chart"), {
       datasets: [{
         label: "Deductiosn (USD$)",
         backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-        data: [2478,5267,734,784,433,500]
+        data: [{{federalTax}},{{medicalTax}},{{StateTax}},{{HealthInsurance}},{{otherDeductions}},{{socialSecurityTax}}]
       }]
     },
     options: {
@@ -97,9 +97,10 @@ $('input[type="radio"]').click(function() {
     console.log('Radio clicked');
     var inputValue = $(this).attr("value"); 
     var targetBox = $("." + inputValue); 
-    $(".selectt").not(targetBox).hide(); 
+    $(".selectt").not(targetBox).hide();
     $(targetBox).show(); 
 }); 
+
                   
     </script>
 
