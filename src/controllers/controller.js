@@ -164,7 +164,8 @@ exports.getWeather = (req, res) => {
     cumulativeBuffer: bufferAmount.toFixed(2),
     deposit: deposit,
     deductions: deductions.toFixed(2),
-    month: payDetails.month
+    month: payDetails.month,
+    displayPayroll : true
   };
 
   res.render("landingv2", response);
