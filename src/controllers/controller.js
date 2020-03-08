@@ -130,7 +130,8 @@ exports.getWeather = (req, res) => {
     otherDeductions:
       request.otherDeductions === "" ? 0.0 : request.otherDeductions,
     hoursWorked: parseFloat(request.hoursWorked),
-    hourlyRate: parseFloat(request.hourlyRate)
+    hourlyRate: parseFloat(request.hourlyRate),
+    month: request.month
   };
 
   console.log(payDetails);
@@ -162,7 +163,8 @@ exports.getWeather = (req, res) => {
     bufferAmount: bufferAmount.toFixed(2),
     cumulativeBuffer: bufferAmount.toFixed(2),
     deposit: deposit,
-    deductions: deductions.toFixed(2)
+    deductions: deductions.toFixed(2),
+    month: payDetails.month
   };
 
   res.render("landingv2", response);
