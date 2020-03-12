@@ -11,13 +11,13 @@
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link active" href="#">Verify payroll</a>
+                        <a class="nav-link active" href="/homePage">Verify payroll</a>
                     </li>
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" href="#">Calculate payroll</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="#">Payroll history</a>
+                        <a class="nav-link" href="/history">Payroll history</a>
                     </li>
                 </ul>
             </div>
@@ -85,7 +85,7 @@
                                         <i class="icon ion-information-circled" id="brand-logo-9" style="width: 80px;padding: 10px 10px 10px 10px;height: 80px;color: #f4476b;"></i>Hours worked
                                     </td>
                                     <td class="text-left">
-                                        <input id = "hoursWorked" class="border rounded" type="text" name="hoursWorked" inputmode="decimal" type="number" step="0.01" min="0" required="" style="width: 110px;">
+                                        <input id = "hoursWorked" class="border rounded" type="text" name="hoursWorked" inputmode="decimal" type="number" step="0.01" min="0" required="" style="width: 110px;" value = {{hoursWorked}}>
                                     </td>
                                 </tr>
                                 <tr>
@@ -93,7 +93,7 @@
                                         <i class="icon ion-information-circled" id="brand-logo-10" style="width: 80px;padding: 10px 10px 10px 10px;height: 80px;color: #f4476b;"></i>Hourly rate
                                     </td>
                                     <td class="text-left">
-                                        <input id= "hourlyRate" class="border rounded" type="text" name="hourlyRate" inputmode="decimal" type="number" step="0.01" min="0" required="" style="width: 110px;">
+                                        <input id= "hourlyRate" class="border rounded" type="text" name="hourlyRate" inputmode="decimal" type="number" step="0.01" min="0" required="" style="width: 110px;" value  = {{hourlyRate}}>
                                     </td>
                                 </tr>
                                 <tr>
@@ -101,7 +101,7 @@
                                         <i class="icon ion-information-circled" id="brand-logo-17" style="width: 80px;padding: 10px 10px 10px 10px;height: 80px;color: #f4476b;" data-toggle="tooltip" title="Total wages ran for the month excluding the taxes and deductions"></i>Payroll Amount
                                     </td>
                                     <td class="text-left">
-                                        <input id = "payrollAmount" class="border rounded" type="text" name="payrollAmount" inputmode="decimal" type="number" step="0.01" min="0" required="" style="width: 110px;">
+                                        <input id = "payrollAmount" class="border rounded" type="text" name="payrollAmount" inputmode="decimal" type="number" step="0.01" min="0" required="" style="width: 110px;" value  = {{payrollAmount}} >
                                     </td>
                                 </tr>
                                 <tr>
@@ -109,7 +109,7 @@
                                         <i class="icon ion-information-circled" id="brand-logo-5" style="width: 80px;padding: 10px 10px 10px 10px;height: 80px;color: #f4476b;"></i>Federal tax
                                     </td>
                                     <td class="text-left">
-                                        <input id = "federalTax"class="border rounded" type="text" name="federalTax" inputmode="decimal" type="number" step="0.01" min="0" required="" style="width: 110px;">
+                                        <input id = "federalTax"class="border rounded" type="text" name="federalTax" inputmode="decimal" type="number" step="0.01" min="0" required="" style="width: 110px;" value  = {{federalTax}}>
                                     </td>
                                 </tr>
                                 <tr>
@@ -117,7 +117,7 @@
                                         <i class="icon ion-information-circled" id="brand-logo-6" style="width: 80px;padding: 10px 10px 10px 10px;height: 80px;color: #f4476b;"></i>State tax
                                     </td>
                                     <td class="text-left">
-                                        <input id = "stateTax" class="border rounded" type="text" name="stateTax" inputmode="decimal" type="number" step="0.01" min="0" required="" style="width: 110px;">
+                                        <input id = "stateTax" class="border rounded" type="text" name="stateTax" inputmode="decimal" type="number" step="0.01" min="0" required="" style="width: 110px;" value = {{StateTax}}>
                                     </td>
                                 </tr>
                                 <tr>
@@ -125,7 +125,7 @@
                                         <i class="icon ion-information-circled" id="brand-logo-7" style="width: 80px;padding: 10px 10px 10px 10px;height: 80px;color: #f4476b;"></i>Health insurance
                                     </td>
                                     <td class="text-left">
-                                        <input id = "healthInsurance" class="border rounded" type="text" name="healthInsurance" inputmode="decimal" type="number" step="0.01" min="0" required="" style="width: 110px;">
+                                        <input id = "healthInsurance" class="border rounded" type="text" name="healthInsurance" inputmode="decimal" type="number" step="0.01" min="0" required="" style="width: 110px;" value = {{HealthInsurance}}>
                                     </td>
                                 </tr>
                                 <tr>
@@ -133,7 +133,7 @@
                                         <i class="icon ion-information-circled" id="brand-logo-8" style="width: 80px;padding: 10px 10px 10px 10px;height: 80px;color: #f4476b;"></i>Other deductions
                                     </td>
                                     <td class="text-left">
-                                        <input id = "otherDeductions" class="border rounded" type="text" name="otherDeductions" inputmode="decimal" type="number" step="0.01" min="0"  style="width: 110px;">
+                                        <input id = "otherDeductions" class="border rounded" type="text" name="otherDeductions" inputmode="decimal" type="number" step="0.01" min="0"  style="width: 110px;"  value = {{otherDeductions}}>
                                     </td>
                                 </tr>
                             </tbody>
@@ -148,7 +148,7 @@
                                         <i class="icon ion-information-circled" id="brand-logo-3" style="width: 80px;padding: 10px 10px 10px 10px;height: 80px;color: #f4476b;"></i>Social security tax
                                     </td>
                                     <td class="text-left" style="width: 153px;height: 53px;">
-                                        <input id = "socialSecurityTax"  class="border rounded" type="text" name="socialSecurityTax" inputmode="decimal" type="number" step="0.01" min="0" style="width: 110px;">
+                                        <input id = "socialSecurityTax"  class="border rounded" type="text" name="socialSecurityTax" inputmode="decimal" type="number" step="0.01" min="0" style="width: 110px;" value = {{socialSecurityTax}}>
                                     </td>
                                 </tr>
                                 <tr>
@@ -156,7 +156,7 @@
                                         <i class="icon ion-information-circled" id="brand-logo-4" style="width: 80px;padding: 10px 10px 10px 10px;height: 80px;color: #f4476b;"></i>Medical tax
                                     </td>
                                     <td class="text-left" style="width: 153px;height: 53px;">
-                                        <input id = "medicalTax" class="border rounded" type="text" name="medicalTax" inputmode="decimal" type="number" step="0.01" min="0" style="width: 110px;">
+                                        <input id = "medicalTax" class="border rounded" type="text" name="medicalTax" inputmode="decimal" type="number" step="0.01" min="0" style="width: 110px;" value = {{medicalTax}}>
                                     </td>
                                 </tr>
                             </tbody>
@@ -180,10 +180,10 @@
             <section style="padding: 0px 90px;">
                 <div class="row">
                     <div class="col-lg-12 text-center main" style="padding-top: 60px;">
-                        <table style="width:100%" align="center">
+                        <table id= "summaryTable" style="width:100%" align="center">
                             <tr>
                                 <td align="left">Month : </td>
-                                <td align="left"> {{month}} </td>
+                                <td id = "smonth" align="left"> {{month}} </td>
                             </tr>
                             <tr>
                                 <td align="left">Hours worked:</td>
@@ -195,8 +195,7 @@
                             </tr>
                             <tr>
                                 <td align="left"> Total: </td>
-                                <td align="left"> {{total}}</td>
-                                <td></td>
+                                <td id = "stotal" align="left"> {{total}}</td>
                             </tr>
                             <tr>
                                 <td align="left">Payroll Amount:</td>
@@ -207,7 +206,7 @@
                                     <span style="color:red">Total Deductions:</span>
                                 </td>
                                  <td align="left">
-                                    <span style="color:red"></span>{{deductions}}</span>
+                                    <span id = "sdeductions" style="color:red"></span>{{deductions}}</span>
                                 </td>
                             </tr>
                             <tr>
@@ -215,7 +214,7 @@
                                     <span style="color:green">Direct Deposit:</span>
                                 </td>
                                  <td align="left">
-                                    <span style="color:green">{{deposit}}</span>
+                                    <span id = "sdeposit" style="color:green">{{deposit}}</span>
                                 </td>
                             </tr>
                             <tr>
@@ -223,15 +222,16 @@
                                     <span style="color:green">Buffer Amount:</span>
                                 </td>
                                  <td align="left">
-                                    <span style="color:green">{{bufferAmount}}</span>
+                                    <span id= "sbufferAmount" style="color:green">{{bufferAmount}}</span>
                                 </td>
                             </tr>
                         </table>
                         <div style="padding-top: 20px; padding-bottom: 10px; text-align:center">
-                            <button class="btn btn-primary text-center border rounded float-none align-items-center" type="submit" style="width: 160px;padding: 10px;background-color: rgb(232,75,94);">Save Payroll</button>
+                            <button class="btn btn-primary text-center border rounded float-none align-items-center" type="button" onclick="persistPayStub()" style="width: 160px;padding: 10px;background-color: rgb(232,75,94);">Save Payroll</button>
                         </div>
                     </div>
                 </div>
+            </section>
         </div>
     </div>
 </div>

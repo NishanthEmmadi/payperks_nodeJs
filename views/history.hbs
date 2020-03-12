@@ -1,0 +1,76 @@
+<!-- Editable table -->
+<section>
+    <nav class="navbar navbar-dark navbar-expand-md" id="app-navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="icon ion-ios-navigate" id="brand-logo" style="width: 60px;height: 60px;"></i>
+            </a>
+            <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" href="/homePage">Verify payroll</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="#">Calculate payroll</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="/history">Payroll history</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</section>
+<div class="container">
+    <div class="row">
+         <div class="col-lg-12 text-center main" style="padding-top: 60px;">
+            <section>
+<div class="card">
+  <div class="card-body">
+    <div id="table" class="table-editable">
+      {{!-- <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i
+            class="fas fa-plus fa-2x" aria-hidden="true"></i></a></span> --}}
+      <table class="table table-bordered table-responsive-md table-striped text-center">
+        <thead>
+          <tr>
+            <th class="text-center">Month</th>
+            <th class="text-center">Billable Hours</th>
+            <th class="text-center">Hourly Rate</th>
+            <th class="text-center">Total</th>
+            <th class="text-center">Final Payroll Amount</th>
+            <th class="text-center">Buffer amount</th>
+            <th class="text-center">Total buffer amount</th>
+            <th class="text-center">Edit</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each payHistory}}
+          <tr>
+            <td class="pt-3-half" contenteditable="true">{{month}}</td>
+            <td class="pt-3-half" contenteditable="true">{{billableHours}}</td>
+            <td class="pt-3-half" contenteditable="true">{{hourlyRate}}</td>
+            <td class="pt-3-half" contenteditable="true">{{total}}</td>
+            <td class="pt-3-half" contenteditable="true">{{finalPayrollAmount}}</td>
+            <td class="pt-3-half" contenteditable="true">{{bufferAmount}}</td>
+            <td class="pt-3-half" contenteditable="true">{{totalBufferAmount}}</td>
+            <td>
+              <span class="table-remove"><button type="button"
+                  class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</section>
+        </div>
+        </div>
+</div>
+
+<!-- Editable table -->

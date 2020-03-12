@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require("../../model/User");
+const PayHistory = require("../../model/PayHistory");
+var mongoose = require('mongoose');
 
  exports.generateJwtToken = async (req, res) => {
 
@@ -32,7 +34,7 @@ const User = require("../../model/User");
     exp: Math.floor(Date.now() / 1000) + (60 * 60),
     data: uname }, 'secret');
 
-  console.log('Generated '+ token);
+  //console.log('Generated '+ token);
 
   return res.status(200).send({
     result: "redirect",
@@ -43,7 +45,7 @@ const User = require("../../model/User");
 }
 
 exports.renderHomePage = (req, res) => {
-  console.log("home page called");
+ // console.log("home page called");
 
   res.render("landing", {
     style: "style.css"
@@ -55,6 +57,95 @@ exports.renderHomePagev2 = (req, res) => {
   res.render("landingv2", {
     style: "landingStyles.css"
   });
+};
+
+exports.persistPayHistory = async (req,res) => {
+
+       let uid = 'sdhjfsjdf745683245';
+
+      const payStub = {
+            payrollAmount: req.body.payrollAmount,
+            hoursWorked: req.body.hoursWorked,
+            hourlyRate: req.body.hourlyRate,
+            total: req.body.total,
+            bufferAmount: req.body.bufferAmount,
+            //cumulativeBuffer: req.body.bufferAmount,
+            deposit: req.body.deposit,
+            totalDeductions: req.body.totalDeductions,
+            month: req.body.month,
+            federalTax: req.body.federalTax,
+            stateTax: req.body.stateTax,
+            healthInsurance: req.body.healthInsurance,
+            otherDeductions: req.body.otherDeductions,
+            socialSecurityTax : req.body.socialSecurityTax,
+            medicalTax: req.body.medicalTax,
+            stub_id : uid + req.body.month
+        }
+
+    console.log(payStub);
+
+    await PayHistory.updateOne({ _id: uid }, { "$pull": { "payStubs": { "stub_id": "sdhjfsjdf745683245January" } }}, { safe: true, multi:true }, function(err, obj) {
+
+      if(err){
+        console.log(err);
+        return res.status(400);
+      } else {
+      
+        console.log('removed stub with uid' + payStub.stub_id);
+
+        PayHistory.updateOne(
+          { _id: uid },
+          { $push: { payStubs: payStub } },{new: true}, (err, result) => {
+    
+            if(err){
+              console.log(err);
+              return res.status(400);
+            }else {
+          
+              console.log('Added stub with uid' + payStub.stub_id);
+              
+            }
+           })
+        
+      }
+     });
+
+     return res.json({'response' : "Success !!"});
+
+};
+
+
+exports.renderHistoryPage = (req, res) => {
+
+
+  res.render("history", {
+    style: "history.css",
+    payHistory : [{
+
+      month : 'January',
+      billableHours: '176',
+      hourlyRate: '59.2',
+      total: '12000',
+      finalPayrollAmount: '9500',
+      bufferAmount: '3000',
+      totalBufferAmount: '6000'
+
+    },{
+
+      month : 'January',
+      billableHours: '176',
+      hourlyRate: '59.2',
+      total: '12000',
+      finalPayrollAmount: '9500',
+      bufferAmount: '3000',
+      totalBufferAmount: '6000'
+
+    }
+  
+  ]
+  });
+
+  
 };
 
 exports.renderRegistrationPage = (req, res) => {
@@ -77,7 +168,7 @@ exports.registerUser = async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   const hashPassword = await bcrypt.hash(UserProvidedpassword, salt);
 
-  console.log('Generated Hash'+ hashPassword)
+  //console.log('Generated Hash'+ hashPassword)
 
       const user = new User({
         username: req.body.username,
@@ -134,7 +225,7 @@ exports.getWeather = (req, res) => {
     month: request.month
   };
 
-  console.log(payDetails);
+  //console.log(payDetails);
 
   let total = payDetails.hoursWorked * payDetails.hourlyRate;
   let bufferAmount = total - payDetails.payrollAmount;

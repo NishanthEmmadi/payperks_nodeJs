@@ -9,6 +9,11 @@ const controller = require('./controllers/controller');
 // Successful login -> homepage
 router.get('/homePage',auth, controller.renderHomePagev2);
 
+//display payroll history
+router.get('/history', controller.renderHistoryPage);
+
+router.post('/history',controller.persistPayHistory);
+
 
 // registration page
  router.get('/register', controller.renderRegistrationPage);

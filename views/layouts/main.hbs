@@ -11,7 +11,7 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
       <link rel="stylesheet" href="css/{{style}}">
       <link rel="stylesheet" href="css/gradient-navbar.css">
-
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    </head>
    <body style="background-color: rgb(248,244,244);">
 
@@ -24,6 +24,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <script src="js/Chart.js"></script>
+     <script src="js/history.js"></script>
+     <script src="js/persistPayStub.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script>
 
@@ -67,7 +69,6 @@
   $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip(); 
     });
-           
    
 new Chart(document.getElementById("pie-chart"), {
     type: 'pie',
