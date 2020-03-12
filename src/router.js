@@ -6,6 +6,10 @@ const router = express.Router();
 
 const controller = require('./controllers/controller');
 
+
+//display dashBoard
+//router.get('/dashboard', controller.renderDashBoard);
+
 // Successful login -> homepage
 router.get('/homePage',auth, controller.renderHomePagev2);
 

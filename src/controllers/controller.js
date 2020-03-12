@@ -44,13 +44,13 @@ var mongoose = require('mongoose');
 
 }
 
-exports.renderHomePage = (req, res) => {
+exports.renderDashBoard = (req, res) => {
  // console.log("home page called");
 
-  res.render("landing", {
-    style: "style.css"
-  });
+  res.render("dashboard");
 };
+
+
 
 exports.renderHomePagev2 = (req, res) => {
 
@@ -61,7 +61,7 @@ exports.renderHomePagev2 = (req, res) => {
 
 exports.persistPayHistory = async (req,res) => {
 
-       let uid = 'sdhjfsjdf745683245';
+       let uid = 'sdhjfsjdf745683247';
 
       const payStub = {
             payrollAmount: req.body.payrollAmount,
@@ -84,7 +84,8 @@ exports.persistPayHistory = async (req,res) => {
 
     console.log(payStub);
 
-    await PayHistory.updateOne({ _id: uid }, { "$pull": { "payStubs": { "stub_id": "sdhjfsjdf745683245January" } }}, { safe: true, multi:true }, function(err, obj) {
+
+       PayHistory.updateOne({ _id: uid }, { "$pull": { "payStubs": { "stub_id": "sdhjfsjdf745683247January" } }}, { safe: true, multi:true }, function(err, obj) {
 
       if(err){
         console.log(err);
@@ -92,57 +93,39 @@ exports.persistPayHistory = async (req,res) => {
       } else {
       
         console.log('removed stub with uid' + payStub.stub_id);
-
-        PayHistory.updateOne(
-          { _id: uid },
-          { $push: { payStubs: payStub } },{new: true}, (err, result) => {
-    
-            if(err){
-              console.log(err);
-              return res.status(400);
-            }else {
-          
-              console.log('Added stub with uid' + payStub.stub_id);
-              
-            }
-           })
         
       }
      });
 
-     return res.json({'response' : "Success !!"});
+
+       PayHistory.findOneAndUpdate(
+      { _id: uid },
+      { $push: { payStubs: payStub } },{new: true, upsert : true}, (err, result) => {
+
+        if(err){
+          console.log(err);
+          return res.status(400);
+        }else {
+      
+          console.log('Added stub with uid' + payStub.stub_id);
+          
+        }
+       })
+
+    return res.json({'response' : "Success !!"});
 
 };
 
 
-exports.renderHistoryPage = (req, res) => {
+exports.renderHistoryPage = async (req, res) => {
 
+  const resultset = await PayHistory.findOne({_id : 'sdhjfsjdf745683247'});
+
+  console.log(resultset.payStubs);
 
   res.render("history", {
     style: "history.css",
-    payHistory : [{
-
-      month : 'January',
-      billableHours: '176',
-      hourlyRate: '59.2',
-      total: '12000',
-      finalPayrollAmount: '9500',
-      bufferAmount: '3000',
-      totalBufferAmount: '6000'
-
-    },{
-
-      month : 'January',
-      billableHours: '176',
-      hourlyRate: '59.2',
-      total: '12000',
-      finalPayrollAmount: '9500',
-      bufferAmount: '3000',
-      totalBufferAmount: '6000'
-
-    }
-  
-  ]
+    payHistory : resultset.payStubs
   });
 
   
