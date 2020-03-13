@@ -1,6 +1,9 @@
 // path node core module
 const path = require('path');
 
+// require module for cookies :
+const cookieParser = require('cookie-parser');
+
 //express
 const express = require('express');
 const app = express();
@@ -39,6 +42,7 @@ app.use(express.json() );
 app.use(express.static('public'));
 app.engine('hbs', hbs.engine);
 app.set('view engine', '.hbs');
+app.use(cookieParser('some_secret_1234'));
 
 //router
 app.use('/',router);
@@ -50,7 +54,7 @@ mongoose.connect(process.env.DB_CONNECT,
 () =>console.log("connected to DB"));
 
 
-app.listen(80,() => {
+app.listen(8080,() => {
 
 console.log('server listening 8080');
  

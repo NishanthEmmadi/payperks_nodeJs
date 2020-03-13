@@ -24,47 +24,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <script src="js/Chart.js"></script>
+     <script src="js/loginService.js"></script>
      <script src="js/history.js"></script>
      <script src="js/persistPayStub.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script>
 
- function myFunction() {
-
-  $.ajax({
-  type: "get",
-  url: '/generateToken',
-  data: {
-    username: document.querySelector('#email').value,
-    password: document.querySelector('#password').value
-  },
-  success: function(response) {
-
-    if (response.result == 'redirect') {
-      //redirecting to main page from here
-    $.ajax({
-      type: "get",
-      beforeSend: function(request){
-          request.setRequestHeader("auth-token", response.token);
-      },
-      url: '/homepage',
-      success: function(response) {
-
-        document.write(response);
-
-      }
-
-    });
-  }
-},
- error: function(err){
-
-   window.alert('Please enter valid credentials');
-
- }
-
-});
- }
 
   $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip(); 

@@ -22,6 +22,7 @@ function persistPayStub(){
     $.ajax({
         type: "POST",
         url: '/history',
+        headers: {"uid": localStorage.getItem("payDayAppUid")},
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify(payStub),
         dataType: "json",

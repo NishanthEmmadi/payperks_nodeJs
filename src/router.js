@@ -6,6 +6,15 @@ const router = express.Router();
 
 const controller = require('./controllers/controller');
 
+//test cookie
+router.get('/get', (req, res) => {
+    // MAIN CODE HERE :
+      const signedCookies = req.signedCookies; // get signed cookies
+      console.log('signed-cookies:', signedCookies);  
+     
+    res.send('get cookie');
+  });
+
 
 //display dashBoard
 //router.get('/dashboard', controller.renderDashBoard);
