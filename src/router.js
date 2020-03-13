@@ -23,9 +23,9 @@ router.get('/get', (req, res) => {
 router.get('/homePage',auth, controller.renderHomePagev2);
 
 //display payroll history
-router.get('/history', controller.renderHistoryPage);
+router.get('/history',auth, controller.renderHistoryPage);
 
-router.post('/history',controller.persistPayHistory);
+router.post('/history',auth,controller.persistPayHistory);
 
 
 // registration page
@@ -40,7 +40,7 @@ router.get('/generateToken', controller.generateJwtToken)
 router.get('/', controller.renderLoginPage);
 
 // pay calculation submit
-router.post('/calculate', controller.getWeather);
+router.post('/calculate',auth, controller.getWeather);
 
 
 

@@ -68,7 +68,8 @@ exports.renderHomePagev2 = (req, res) => {
 };
 
 exports.persistPayHistory = async (req, res) => {
-  const uid = req.get("uid");
+  
+  const uid =  req.signedCookies.uid;
 
   const payStub = {
     payrollAmount: req.body.payrollAmount,
@@ -91,7 +92,7 @@ exports.persistPayHistory = async (req, res) => {
 
   PayHistory.updateOne(
     { _id: uid },
-    { $pull: { payStubs: { stub_id: "sdhjfsjdf745683247January" } } },
+    { $pull: { payStubs: { stub_id: payStub.stub_id } } },
     { safe: true, multi: true },
     function(err, obj) {
       if (err) {
@@ -121,13 +122,13 @@ exports.persistPayHistory = async (req, res) => {
 };
 
 exports.renderHistoryPage = async (req, res) => {
-  const resultset = await PayHistory.findOne({ _id: "sdhjfsjdf745683247" });
+  const resultset = await PayHistory.findOne({ _id: req.signedCookies.uid });
 
-  console.log(resultset.payStubs);
+  console.log(resultset+ '--->');
 
   res.render("history", {
     style: "history.css",
-    payHistory: resultset.payStubs
+    payHistory: resultset != null ? resultset.payStubs : ""
   });
 };
 
