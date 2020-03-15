@@ -22,7 +22,8 @@ const userSchema = new mongoose.Schema({
         cumulativeBuffer: Number,
         deposit: Number,
         deductions: Number,
-        month: String
+        month: String,
+        monthId : Number
       }
     ]
 });

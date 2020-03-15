@@ -11,14 +11,11 @@ function loginFunction() {
         //redirecting to main page from here
         $.ajax({
           type: "get",
-          // beforeSend: function(request) {
-          //   request.setRequestHeader("auth-token", tokenResponse.token);
-          // },
           url: "/homepage",
           success: function(response) {
             console.log(response.id);
             // localStorage.setItem("payDayAppUid", tokenResponse.uid);
-            document.write(response);
+            window.location.href = "/homepage";
           }
         });
       }

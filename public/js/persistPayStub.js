@@ -29,6 +29,7 @@ function persistPayStub(){
         success: function (response) {
             
             alert("Save information successfully !!"); 
+            window.location.href = "/history";   
         
         },
         error: function(xhr, textStatus, error){

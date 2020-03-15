@@ -13,6 +13,7 @@ const exphbs = require('express-handlebars');
 
 //database 
 const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 
 //for managing external configuration
 const dotenv = require('dotenv');
