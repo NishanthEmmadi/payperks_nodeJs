@@ -45,7 +45,7 @@ exports.renderPayEditPage = async (req, res) => {
       );
     //  res.json(resultset != null ? resultset[0] : "");
 
-      res.render("sorry! This feature will be available in next release");
+      res.send("sorry! This feature will be available in next release");
 
     }
   });
