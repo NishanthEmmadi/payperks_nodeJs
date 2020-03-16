@@ -55,8 +55,8 @@ mongoose.connect(process.env.DB_CONNECT,
 () =>console.log("connected to DB"));
 
 
-app.listen(8080,() => {
+app.listen(80,() => {
 
-console.log('server listening 8080');
+console.log('server listening 80');
  
 });
