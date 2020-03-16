@@ -104,7 +104,7 @@ function recalculateBufferAmmount(stubs, monId) {
        PayHistory.findOne({ _id: stubs[0]._id })
         .then(doc => {
           stubToUpdate = doc.payStubs.filter( x => x.stub_id === stub.stub_id)[0];
-          stubToUpdate["cumulativeBuffer"] = calculatecummulativeBuffer(
+          stubToUpdate["cumulativeBuffer"] = (calculatecummulativeBuffer(
             stubs[0].payStubs,
             stub.month,
             (monthId, month) =>
@@ -112,7 +112,7 @@ function recalculateBufferAmmount(stubs, monId) {
               moment()
                 .month(month)
                 .format("M")
-          ) + parseFloat(stub.bufferAmount);
+          ) + parseFloat(stub.bufferAmount)).toFixed(2);
           doc.save();
         })
         .catch(err => {

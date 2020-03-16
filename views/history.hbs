@@ -58,7 +58,8 @@
             <td class="pt-3-half" contenteditable="false">{{cumulativeBuffer}}</td>
             <td>
               <span class="table-remove"><button type="button"
-                  class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
+              onclick="window.location.href = '/payedit/{{monthId}}';"
+                  class="btn btn-danger btn-rounded btn-sm my-0">Edit</button></span>
             </td>
           </tr>
           {{/each}}

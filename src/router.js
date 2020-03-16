@@ -48,6 +48,9 @@ router.get('/generateToken', authTokenController.generateJwtToken)
 //welcome login page
 router.get('/', controller.renderLoginPage);
 
+//edit payStub
+router.get('/payedit/:monthId', controller.renderPayEditPage)
+
 // pay calculation submit
 router.post('/calculate',auth, calculatePayRoll.calculatePayroll);
 
@@ -75,3 +78,5 @@ router.get('/cumm',async (req,res) => {
 
 
 module.exports = router;
+
+

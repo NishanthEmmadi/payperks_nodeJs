@@ -30,11 +30,6 @@ const $tableID = $('#table');
    $tableID.find('table').append($clone);
  });
 
- $tableID.on('click', '.table-remove', function () {
-
-   $(this).parents('tr').detach();
- });
-
  $tableID.on('click', '.table-up', function () {
 
    const $row = $(this).parents('tr');
