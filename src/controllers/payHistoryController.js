@@ -24,11 +24,10 @@ exports.persistPayHistory = async (req, res) => {
     console.log("found and removed the stub" + removedStub);
   }
 
+  let cumulativeBuffer = 0.0;
   var promise = PayHistory.find({ _id: uid }).exec();
 
   promise.then(function(stubs) {
-    let cumulativeBuffer = 0.0;
-
     if (stubs[0]) {
       console.log(stubs[0]);
 
@@ -36,24 +35,16 @@ exports.persistPayHistory = async (req, res) => {
 
       stubLists.sort((a, b) => (a.monthId > b.monthId ? 1 : -1));
 
-      stubLists.forEach(stub => {
-        if (stub.monthId < moment().month(req.body.month).format("M")) {
-          cumulativeBuffer += parseFloat(stub.bufferAmount);
-
-          console.log(
-            " buffer amount for the month" +
-              "" +
-              stub.month +
-              "is:" +
-              stub.cumulativeBuffer
-          );
-        } else{
-
-
-
-        }
-      });
-    } 
+      cumulativeBuffer = calculatecummulativeBuffer(
+        stubLists,
+        req.body.month,
+        (monthId, month) =>
+          monthId <
+          moment()
+            .month(month)
+            .format("M")
+      );
+    }
 
     console.log("total buffer amount" + cumulativeBuffer);
 
@@ -91,14 +82,62 @@ exports.persistPayHistory = async (req, res) => {
           return res.status(400);
         } else {
           console.log("Added stub with uid" + payStub.stub_id);
+          if(stubs[0] && stubs[0].payStubs){
+            stubs[0].payStubs.push(payStub);
+            recalculateBufferAmmount(stubs,  moment().month(req.body.month).format("M"));
+            }
         }
-      }
-    );
+      });
+
   });
-
-
-
-
 
   return res.json({ response: "Success !!" });
 };
+
+function recalculateBufferAmmount(stubs, monId) {
+
+  let filtteredStubs = stubs[0].payStubs.filter(x => x.monthId > monId)
+
+  filtteredStubs.forEach(stub => {
+
+
+       PayHistory.findOne({ _id: stubs[0]._id })
+        .then(doc => {
+          stubToUpdate = doc.payStubs.filter( x => x.stub_id === stub.stub_id)[0];
+          stubToUpdate["cumulativeBuffer"] = calculatecummulativeBuffer(
+            stubs[0].payStubs,
+            stub.month,
+            (monthId, month) =>
+              monthId <
+              moment()
+                .month(month)
+                .format("M")
+          ) + parseFloat(stub.bufferAmount);
+          doc.save();
+        })
+        .catch(err => {
+          console.log("Oh! Dark" + err);
+        });
+    
+  });
+}
+
+function calculatecummulativeBuffer(stubLists, currentMonth, predicateFun) {
+  let cumulativeBuffer = 0.0;
+
+  stubLists.forEach(stub => {
+    if (predicateFun(stub.monthId, currentMonth)) {
+      cumulativeBuffer += parseFloat(stub.bufferAmount);
+
+      console.log(
+        " buffer amount for the month" +
+          "" +
+          stub.month +
+          "is:" +
+          cumulativeBuffer
+      );
+    }
+  });
+
+  return cumulativeBuffer;
+}
