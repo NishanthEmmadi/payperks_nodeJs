@@ -12,7 +12,7 @@ const credentials = {
 	cert: certificate,
 	ca: ca
 };
-const httpsServer = https.createServer(credentials, app);
+
 
 // require module for cookies :
 const cookieParser = require('cookie-parser');
@@ -73,6 +73,8 @@ mongoose.connect(process.env.DB_CONNECT,
 // console.log('server listening 80');
  
 // });
+
+const httpsServer = https.createServer(credentials, app);
 
 httpsServer.listen(80, () => {
 	console.log('HTTPS Server running on port 443');
