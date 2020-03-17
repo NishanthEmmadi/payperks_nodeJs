@@ -1,6 +1,7 @@
 // path node core module
 const path = require('path');
 
+const fs = require('fs');
 const https = require('https');
 // Certificate
 const privateKey = fs.readFileSync('/etc/letsencrypt/live/www.programwithnish.com/privkey.pem', 'utf8');
