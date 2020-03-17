@@ -35,7 +35,7 @@ console.log(__dirname);
 dotenv.config();
 
 //router file import
-const router = require('./router')
+const router = require('./router');
 
 
 var hbs = exphbs.create({
@@ -53,7 +53,7 @@ var hbs = exphbs.create({
 //middleware functions
 app.use(express.urlencoded({extended: false}));
 app.use(express.json() );
-app.use(express.static('public'),{ dotfiles: 'allow' });
+app.use(express.static('public'));
 app.engine('hbs', hbs.engine);
 app.set('view engine', '.hbs');
 app.use(cookieParser('some_secret_1234'));
