@@ -1,17 +1,13 @@
 // path node core module
 const path = require('path');
 
-// const fs = require('fs');
-// const https = require('https');
-// // Certificate
-// const privateKey = fs.readFileSync('/etc/letsencrypt/live/www.programwithnish.com/privkey.pem', 'utf8');
-// const certificate = fs.readFileSync('/etc/letsencrypt/live/www.programwithnish.com/cert.pem', 'utf8');
-// const ca = fs.readFileSync('/etc/letsencrypt/live/www.programwithnish.com/chain.pem', 'utf8');
-// const credentials = {
-// 	key: privateKey,
-// 	cert: certificate,
-// 	ca: ca
-// };
+const fs = require('fs');
+const https = require('https');
+
+const options = {
+  cert: fs.readFileSync('./sslcert/fullchain.pem'),
+  key: fs.readFileSync('./sslcert/privkey.pem')
+};
 
 
 // require module for cookies :
@@ -68,11 +64,13 @@ mongoose.connect(process.env.DB_CONNECT,
 () =>console.log("connected to DB"));
 
 
-app.listen(80,() => {
+app.listen(8080,() => {
 
-console.log('server listening 80');
+console.log('server listening 8080');
  
 });
+
+https.createServer(options, app).listen(8443);
 
 // const httpsServer = https.createServer(credentials, app);
 
