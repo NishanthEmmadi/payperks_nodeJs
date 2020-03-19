@@ -1,15 +1,6 @@
 // path node core module
 const path = require('path');
 
-const fs = require('fs');
-const https = require('https');
-
-const options = {
-  cert: fs.readFileSync('./sslcert/fullchain.pem'),
-  key: fs.readFileSync('./sslcert/privkey.pem')
-};
-
-
 // require module for cookies :
 const cookieParser = require('cookie-parser');
 
@@ -64,16 +55,8 @@ mongoose.connect(process.env.DB_CONNECT,
 () =>console.log("connected to DB"));
 
 
-app.listen(8080,() => {
+app.listen(80,() => {
 
-console.log('server listening 8080');
+console.log('server listening 80');
  
 });
-
-https.createServer(options, app).listen(8443);
-
-// const httpsServer = https.createServer(credentials, app);
-
-// httpsServer.listen(443, () => {
-// 	console.log('HTTPS Server running on port 443');
-// });
